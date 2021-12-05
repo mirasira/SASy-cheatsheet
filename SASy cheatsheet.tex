@@ -1,0 +1,132 @@
+\documentclass{article}
+
+\usepackage{titlesec}
+\usepackage{tikz-among-us}
+
+\author{Impostor from among us}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+\title{\begin{tikzpicture}
+			\amongUsI[scale=0.1, shift={(50.5,0)},
+			rotate around={0:(1.75,2.3)}]
+			{blue}{cyan}
+		\end{tikzpicture}
+		SASy cheatsheat
+		\begin{tikzpicture}
+			\amongUsI[scale=0.1, shift={(50.5,0)},xscale = -1,
+			rotate around={0:(1.75,2.3)}]
+			{red}{cyan}
+		\end{tikzpicture}}
+\date{}
+
+
+
+\titleformat{\subparagraph}
+    {\normalfont\normalsize\bfseries}{\thesubparagraph}{1em}{}
+\titlespacing*{\subparagraph}{\parindent}{3.25ex plus 1ex minus .2ex}{.75ex plus .1ex}
+
+
+\begin{document}
+\maketitle
+
+
+\section*{týden 1}
+	\subparagraph*{Prevádzanie sinu a kosínusu na komplexné funkcie a naopak}
+		(Převádění sinu a cosinu na komplexní funkce a naopak)
+	
+		\[x(t) = Ae^{\sigma t}(\cos(\omega t+ \varphi) + j\sin(\omega t+ \varphi )) 
+		= A e^{\varphi j}e^{(\sigma + \omega j)t}\]
+
+		\[A = |A|e^{\omega j}, \quad s = \sigma + \omega j\]
+
+		\[x(t) = Ae^{st} = A \underbrace{\cos(st)}_{Re} 
+		+ j A\underbrace{sin(st)}_{Im}\]
+		
+		\[x(t) = \frac{e^{j\omega t} - e^{-j\omega t}}{2j} = \sin(\omega t)\]
+		
+		\[x(t) = \frac{e^{j\omega t} + e^{-j\omega t}}{2} = \cos(\omega t)\]
+	\subparagraph*{Vzorkovací vlastnost dirakovy funkce}
+		\[\int^{\infty}_{-\infty} f(t)\delta(t - t_0) dt 
+		= \int^{\infty}_{-\infty} f(t_0)y\delta(t-t_0) 
+		= f(t_0)\int^{\infty}_{-\infty} \delta(t - t_0) = f(t_0)\]
+
+\section*{týden 2}
+	\subparagraph*{Průměrná hodnota, výkon, energie}
+
+		Průměrná hodnota
+			\[Avg\{x[n]\} = \frac{1}{N_2-N_1+1} \sum^{N_2}_{N=N_1} x[n] 
+			\qquad Avg\{x[n]\} = \lim_{N\to\infty}\frac{1}{2N+1}\sum_{n=-N}^{N}x[n]\]
+
+			\[Avg\{x(t)\} = \frac{1}{T_2 - T_1}\int_{T_2}^{T_1}x(t)dt 
+			\qquad Avg\{x(t)\} = \lim_{T\to\infty}\frac{1}{2T}\int_{T}^{-T}x(t)dt\]  
+		Okamžitý výkon
+			\[p(t) = |x(t)|^2 \qquad p[n] = |x[n]|^n\]
+		Průměrný výkon
+			\[P = Avg\{|x(t)|^2\} \qquad P = Avg\{|x[n]|^2\}\]
+		Energie
+			\[E = \int_\jmath p(t) dt = \int_\jmath |x(t)|^2 dt \qquad E 
+			= \sum_{n\in\jmath} p[n] = \sum_{n\in\jmath}|x[n]|^2\]
+	\subparagraph*{Fourierova řada}
+		Reálná Fourierova řada
+			\[\sum_{\omega} A(\omega) \cos(\omega t + \varphi(\omega)) 
+			\quad \omega = 2\pi k f\]
+		Komplexní Fourierova řada
+			\[x(t) = \sum_{k = -\infty}^\infty{C_k e^{j \omega_k t}}, 
+			\quad \omega_k = 2 \pi fk = \frac{2 \pi}{T}k\]
+		Koeficient komplexní Fourierovy řady
+			\[C_k = \frac{1}{T}\int_{<T>} x(t)e^{-j\omega_k t}dt\]
+
+
+
+\section*{týden 3}
+	\subsection*{Fourierovy transformace}
+		Fourierova transformace ve spojitém čase (CTFT)
+			\[\mathcal{F}\{x(t)\} = X(\omega) 
+			= \int_{-\infty}^{\infty} x(t)e^{-j\omega t} dt\]
+
+		inverzní CTFT 
+			\[x(t) = \frac{1}{2\pi} 
+			\int_{-\infty}^{\infty} X(\omega)e^{j\omega t}d\omega\]
+
+		Fourierova transformace v diskrétním čase (DTFT) 
+		\[X(\Omega) = \sum_{n = - \infty}^{\infty} x[n]e^{-j\Omega n}\]
+
+		inverzní (DTFT) 
+		\[x[n] = \frac{1}{2 \pi} \int_{0}^{2 \pi} X(\Omega ) e^{j \Omega n} d\Omega\]
+
+
+		Diskrétní Fourierova Transformace (DFT)
+		\[X[k] = \sum_{s=0}^{N-1} x[n] e^{-j \frac{2\pi}{N}kn}\]
+
+		Inverzní DFT
+		\[x_p[n] = \frac{1}{N} \sum_{s=0}^{N-1} X[k] e^{j \frac{2\pi}{N}kn}\]
+
+
+\section*{týden 4}
+	\subsection*{Lineární konvoluce}
+		\[x[n] \ast y[n] = \sum_{m=-\infty}^{\infty}x[n-m]y[m]
+		= \sum_{m = -\infty}^{\infty}x[m]y[n-m]\]
+		\[x(t) \ast y(t) = \int_{-\infty}^{\infty} x(t-\tau)y(\tau)d\tau
+		= \int_{-\infty}^{\infty}x(\tau) y(t-\tau)d\tau\]
+
+		Fir filtry(finite impulse responce)
+		
+	
+\section*{týden 5}
+\section*{týden 6}
+\section*{týden 7}
+\section*{týden 8}
+\section*{týden 9}
+	\subsubsection*{Z-transformace}
+		Definice
+		\[\mathcal{Z}\{x[n]\}=\sum_{n=0}^{\infty}x[n]z^{-n}\]
+		Odvození vzorců
+		\[\mathcal{Z}\{\delta[n]\}=\sum_{n=0}^{\infty}\delta[n]z^{-n}=z^0=1\]
+		impulsní odezva se zjštuje, tak že najdeme Z/L transformaci
+		a přechodovou odezvu (odezva na jednotkový skok) najdeme tak,
+		že zase najdem Z/L transformaci ale pronásonbenou 
+		zpětnou Z/L transformací jednotkovýho skoku
+
+
+\end{document}
